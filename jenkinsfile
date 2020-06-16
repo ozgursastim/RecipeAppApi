@@ -1,15 +1,15 @@
 pipeline{
-    agent {docker {image 'python:3.8.3'}}
-    stage {
+    agent {docker {image '3.8.3-alpine'}}
+    stages {
         stage('build'){
             steps {
                 sh 'pip install -r requirements.txt'
             }
         }
-    }
-    stage('test'){
-        steps {
-            sh 'docker-compose run app sh -c "python manage.py test && flake8"'
+        stage('test'){
+            steps {
+                sh 'docker-compose run app sh -c "python manage.py test && flake8"'
+            }
         }
     }
 }
