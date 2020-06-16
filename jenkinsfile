@@ -1,13 +1,7 @@
 pipeline{
-    agent none
+    agent { dockerfile true }
     stages {
         stage('build'){
-            agent{
-                docker{
-                    image '3.8.3-alpine'
-                    label 'docker'
-                }
-            }
             steps {
                 sh 'pip install -r requirements.txt'
             }
